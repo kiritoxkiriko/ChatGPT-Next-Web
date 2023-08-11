@@ -26,7 +26,3 @@ jobs:
             [ ! -d "ChatGPT-Next-Web" ] && git clone "https://github.com/kiritoxkiriko/ChatGPT-Next-Web ./chatgpt-next-web"
             cd chatgpt-next-web && git pull 
             docker compose --profile build up -d
-          
-
-
-
