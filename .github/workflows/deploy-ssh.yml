@@ -21,12 +21,12 @@ jobs:
           user: ${{ secrets.SSH_USER }}
           pass: ${{ secrets.SSH_PASS }}
           port: ${{ secrets.SSH_PORT}}
-        connect_timeout: 10s
-        script: |
-          [ ! -d "ChatGPT-Next-Web" ] && git clone "https://github.com/kiritoxkiriko/ChatGPT-Next-Web ./chatgpt-next-web"
-          cd chatgpt-next-web && git pull 
-          docker compose --profile build up -d
-        
+          connect_timeout: 10s
+          script: |
+            [ ! -d "ChatGPT-Next-Web" ] && git clone "https://github.com/kiritoxkiriko/ChatGPT-Next-Web ./chatgpt-next-web"
+            cd chatgpt-next-web && git pull 
+            docker compose --profile build up -d
+          
 
 
 
