@@ -13,7 +13,7 @@ jobs:
         uses: cross-the-world/ssh-pipeline@master
         env:
           CODE: ${{ secrets.ENV_CODE}}
-          HIDE_USER_API_KEY: ${{ secrets.ENV_HIDE_USER_API_KEY}}
+          HIDE_USER_API_KEY: "1"
           BASE_URL: ${{ secrets.ENV_BASE_URL}}
           OPENAI_API_KEY: ${{ secrets.ENV_OPENAI_API_KEY}}
         with:
