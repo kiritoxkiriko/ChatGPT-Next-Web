@@ -1,0 +1,32 @@
+name: deploy to server by ssh
+
+on:
+  push:
+     branches:
+        - 'main'
+
+jobs:
+  deploy-to-server-with-ssh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ssh pipeline
+        uses: cross-the-world/ssh-pipeline@master
+        env:
+          CODE: ${{ secrets.ENV_CODE}}
+          HIDE_USER_API_KEY: ${{ secrets.ENV_HIDE_USER_API_KEY}}
+          BASE_URL: ${{ secrets.ENV_BASE_URL}}
+          OPENAI_API_KEY: ${{ secrets.ENV_OPENAI_API_KEY}}
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          user: ${{ secrets.SSH_USER }}
+          pass: ${{ secrets.SSH_PASS }}
+          port: ${{ secrets.SSH_PORT}}
+        connect_timeout: 10s
+        script: |
+          [ ! -d "ChatGPT-Next-Web" ] && git clone "https://github.com/kiritoxkiriko/ChatGPT-Next-Web ./chatgpt-next-web"
+          cd chatgpt-next-web && git pull 
+          docker compose --profile build up -d
+        
+
+
+
